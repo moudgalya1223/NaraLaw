@@ -1,0 +1,188 @@
+.section-1 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)),
+              url('https://firebasestorage.googleapis.com/v0/b/chat-with-me143.appspot.com/o/0c46ba37-ae9e-4a10-8e6b-0b381c1022ff.png?alt=media&token=3d56c140-ca61-432d-8ed8-d17bb8b65b41');
+  background-size: cover;
+  background-position: center;
+    overflow-y: auto; /* Add vertical scrollbar */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  
+}
+
+/* Toolbar */
+.toolbar nav {
+  display: flex;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: black;
+  position: relative;
+  z-index: 10;
+}
+
+/* Heading stays on the left */
+.toolbar .heading {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+/* Buttons aligned to the right */
+.toolbar button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 8px 18px;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: auto; /* Push buttons to the right */
+}
+
+.toolbar button + button {
+  margin-left: 10px; /* Space between buttons */
+}
+
+.toolbar button:hover {
+  color: #c5a059;
+}
+
+.toolbar button:focus {
+  outline: none;
+}
+
+/* Title perfectly centered on the section */
+// .toolbar .title {
+//   position: absolute;
+//   top: 75%; /* Move further down: 0% top is top, 100% is bottom */
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   font-family: 'Cinzel', serif;
+//   font-size: 5.0rem;
+//   color: #ffffff;
+//   white-space: nowrap;
+// bottom: 100%;
+//   pointer-events: none;
+//   z-index: 5;
+// }
+.toolbar .title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 100%;/* Move further down: 0% top is top, 100% is bottom */
+  left: 10%;
+  bottom: 100%;
+  font-family: 'Cormorant Garamond', serif;
+
+  font-size: clamp(2rem, 5vw, 5rem);
+
+  color: #ecd83f;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Center-heading at bottom */
+.center-heading {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  text-align: center;
+  color: gold;
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+}
+
+.center-heading span {
+  display: inline;
+  margin: 0 5px;
+  font-size: x-large;
+}
+.section-1 .toolbar .paragraph {
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
+  text-align: center;
+  color: rgb(255, 218, 34);
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+
+}
+
+/* Appointment button positioned between title and paragraph */
+/* Appointment button positioned near the top */
+.section-1 .toolbar .appointment {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 400px; /* adjust distance from top; change as needed */
+
+  padding: 18px 50px;
+  background: transparent;
+  color: #ffffff;
+
+  border: 2px solid #ffffff;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 6;
+}
+
+/* Hover effect */
+.section-1 .toolbar .appointment:hover {
+  background-color: gold;
+  color: #000;
+  border-color: gold;
+}
+
+.hero {
+  display: flex;
+  gap: 40px;
+  padding: 60px;
+}
+
+.booking-card {
+  background: white;
+  padding: 24px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.booking-card select,
+.booking-card input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+}
+
+.booking-card button {
+  width: 100%;
+  padding: 12px;
+  background: #0b3c5d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+  }
+}
+.lawyer-name {
+  font-family: Georgia, serif;
+  font-weight: 500;
+  font-size: 36px; /* adjust for hero */
+}
