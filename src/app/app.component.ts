@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router'
 import { ViewChild } from '@angular/core';;
 import translations  from '../assets/translation.json'
 import { FormsModule } from '@angular/forms';
+import e from 'express';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -12,9 +13,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  api_key='AIzaSyCAZm_CP8DgGeVkEb6Ct5Hy_E0IvhEZrSI';
    ts=translations;
   @ViewChild('booking') booking!:ElementRef;
+  @ViewChild('about_me') about_me!:ElementRef;
   title = translations.heading;
   client_num=''
   client_casetype=''
@@ -35,7 +36,12 @@ export class AppComponent {
   'INTELLECTUAL PROPERTY',
   'TAX'
 ];
-
+aboutme(){
+  this.about_me.nativeElement.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  })
+}
   submit(){
     //const sectionEl = this.booking.nativeElement;
     this.booking.nativeElement.scrollIntoView({

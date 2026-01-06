@@ -2,8 +2,7 @@
   <div class="toolbar">
     <nav>     
       <span class="heading">{{title}}</span>
-     <button (click)="submit()"> test</button>
-     <button (click)="submit()"> test1</button>
+     <button (click)="aboutme()"> {{ts['about']}}</button>
      <h1 class="title"> {{title_1}}</h1>3       
     </nav>
     <button class="appointment"  (click)="submit()"> {{book_your_slot}}</button>
@@ -28,11 +27,27 @@
       <input type="name" placeholder="Please enter your name" required [(ngModel)]="client_name"/>
       <input type="tel" placeholder="Phone Number" [(ngModel)]="client_num" required/>
       <select required  [(ngModel)]="client_casetype">
-        <option *ngFor="let caseType of case_types" [value]="caseType"  >{{caseType}}</option>
+        <option value="" disabled selected>{{ts['Select type of case']}}</option>
+        <option *ngFor="let caseType of case_types" [value]="caseType"  placeholder="type of case" >{{caseType}}</option>
       </select>
       <button type="submit" (click)="client_Details()">{{book_your_slot}}</button>
-      <small>No payment required. Confirmation via call.</small>
+      <small>{{ts['payment']}}</small>
     </div>
+  </section>
+</div>
+<div class="about-container">
+  <section #about_me class="about-section">
+    <div class="about-image">
+      <img src="https://firebasestorage.googleapis.com/v0/b/chat-with-me143.appspot.com/o/IMG-20191017-WA0015~3%20(1).jpg?alt=media&token=1cc7bd33-6f4e-46f8-9fb8-b91ec4f29274" alt="Lawyer Portrait">
+      <span> {{ts['enrollement_num']}}</span>
+    </div>
+    <div class="about-content">
+    <h1 class="about-title"> {{ts['about_h']}}</h1>
+    <p class="about-text highlight">{{ts['about_p1']}}</p>
+    <p class="about-text">{{ts['about_p2']}}</p>
+    <p class="about-text">{{ts['about_p3']}}</p>
+
+  </div>
   </section>
 </div>
 <!-- <section #booking  class="hero">

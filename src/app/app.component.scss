@@ -1,188 +1,208 @@
+/* Container Fixes */
 .section-1 {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)),
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
               url('https://firebasestorage.googleapis.com/v0/b/chat-with-me143.appspot.com/o/0c46ba37-ae9e-4a10-8e6b-0b381c1022ff.png?alt=media&token=3d56c140-ca61-432d-8ed8-d17bb8b65b41');
   background-size: cover;
   background-position: center;
-    overflow-y: auto; /* Add vertical scrollbar */
-  overflow-x: hidden; /* Prevent horizontal scroll */
-  
+  overflow: hidden; /* Prevent overlap issues */
+  display: flex;
+  flex-direction: column;
 }
 
-/* Toolbar */
+/* Navbar/Toolbar Fixes */
 .toolbar nav {
   display: flex;
+  justify-content: space-between; /* Spaced items */
   align-items: center;
-  padding: 20px 50px;
-  background-color: black;
-  position: relative;
+  padding: 15px 30px;
+  background-color: #000;
   z-index: 10;
 }
 
-/* Heading stays on the left */
 .toolbar .heading {
   font-family: 'Cinzel', serif;
   font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
+  color: #fff;
 }
 
-/* Buttons aligned to the right */
+.toolbar .nav-buttons {
+  display: flex;
+  gap: 15px;
+}
+
 .toolbar button {
   background: transparent;
   border: none;
-  color: #ffffff;
-  padding: 8px 18px;
+  color: #fff;
   font-family: 'Cinzel', serif;
-  text-transform: uppercase;
-  font-size: 0.8rem;
   cursor: pointer;
-  transition: 0.3s;
-  margin-left: auto; /* Push buttons to the right */
 }
 
-.toolbar button + button {
-  margin-left: 10px; /* Space between buttons */
-}
-
-.toolbar button:hover {
-  color: #c5a059;
-}
-
-.toolbar button:focus {
-  outline: none;
-}
-
-/* Title perfectly centered on the section */
-// .toolbar .title {
-//   position: absolute;
-//   top: 75%; /* Move further down: 0% top is top, 100% is bottom */
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   font-family: 'Cinzel', serif;
-//   font-size: 5.0rem;
-//   color: #ffffff;
-//   white-space: nowrap;
-// bottom: 100%;
-//   pointer-events: none;
-//   z-index: 5;
-// }
+/* Centered Main Title (The Quote) */
 .toolbar .title {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 100%;/* Move further down: 0% top is top, 100% is bottom */
-  left: 10%;
-  bottom: 100%;
-  font-family: 'Cormorant Garamond', serif;
-
-  font-size: clamp(2rem, 5vw, 5rem);
-
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  text-align: center;
   color: #ecd83f;
-  white-space: nowrap;
-  pointer-events: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.4;
+  margin: 0;
   z-index: 5;
 }
 
-/* Center-heading at bottom */
-.center-heading {
-  position: absolute;
-  bottom: 30px;
-  width: 100%;
-  text-align: center;
-  color: gold;
-  font-family: 'Cinzel', serif;
-  font-size: 1.2rem;
-}
-
-.center-heading span {
-  display: inline;
-  margin: 0 5px;
-  font-size: x-large;
-}
+/* Paragraph Text Fix (The long legal text) */
 .section-1 .toolbar .paragraph {
   position: absolute;
-  bottom: 80px;
-  width: 100%;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
   text-align: center;
-  color: rgb(255, 218, 34);
+  color: #fff;
   font-family: 'Cinzel', serif;
-  font-size: 2.2rem;
-
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  line-height: 1.6;
 }
 
-/* Appointment button positioned between title and paragraph */
-/* Appointment button positioned near the top */
+/* Appointment Button - Centered below text */
 .section-1 .toolbar .appointment {
   position: absolute;
+  top: 75%;
   left: 50%;
-  transform: translateX(-50%);
-  top: 400px; /* adjust distance from top; change as needed */
-
-  padding: 18px 50px;
+  transform: translate(-50%, -50%);
+  padding: 12px 35px;
   background: transparent;
-  color: #ffffff;
-
-  border: 2px solid #ffffff;
+  color: #fff;
+  border: 1px solid #fff;
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
+  font-size: 1rem;
   letter-spacing: 2px;
-  text-transform: uppercase;
-
   cursor: pointer;
-  transition: all 0.3s ease;
   z-index: 6;
 }
 
-/* Hover effect */
 .section-1 .toolbar .appointment:hover {
-  background-color: gold;
+  background-color: #ecd83f;
   color: #000;
-  border-color: gold;
+  border-color: #ecd83f;
 }
 
-.hero {
-  display: flex;
-  gap: 40px;
-  padding: 60px;
-}
-
-.booking-card {
-  background: white;
-  padding: 24px;
-  border-radius: 10px;
-  width: 320px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.booking-card select,
-.booking-card input {
+/* Footer Address Fix */
+.center-heading {
+  position: absolute;
+  bottom: 20px;
   width: 100%;
-  margin-bottom: 12px;
-  padding: 10px;
+  text-align: center;
+  color: #ecd83f;
+  font-family: 'Cinzel', serif;
+}
+
+.center-heading span {
+  margin: 0 10px;
+  font-size: 1rem;
+}
+
+/* Booking Section (Section 2) */
+.booking-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-card input, .booking-card select {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .booking-card button {
-  width: 100%;
-  padding: 12px;
-  background: #0b3c5d;
-  color: white;
+  padding: 15px;
+  background: #000;
+  color: gold;
   border: none;
-  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.about-container {
+  width: 100%;
+  padding: 80px 0;
+  background-color: #fff;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-  }
+.about-section {
+  display: flex; /* This creates the side-by-side layout */
+  align-items: flex-start; /* Aligns items to the top */
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 60px; /* Space between image and text */
+  padding: 0 40px;
 }
-.lawyer-name {
-  font-family: Georgia, serif;
-  font-weight: 500;
-  font-size: 36px; /* adjust for hero */
+
+.about-image {
+  flex: 1; /* Takes up equal width */
+  max-width: 450px;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  /* Optional elegant border */
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #fdfdfd;
+}
+
+.about-content {
+  flex: 1.2; /* Makes the text area slightly wider than the image */
+}
+
+.about-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.8rem;
+  color: #1a1a1a;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.about-text {
+  font-family: 'Georgia', serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.about-text.highlight {
+  font-weight: 600;
+  color: #222;
+}
+
+/* Mobile View: Stacks them when the screen is small */
+@media (max-width: 992px) {
+  .about-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .about-image {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
 }
