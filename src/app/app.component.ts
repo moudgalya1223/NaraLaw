@@ -5,6 +5,7 @@ import { ViewChild } from '@angular/core';;
 import translations  from '../assets/translation.json'
 import { FormsModule } from '@angular/forms';
 import e from 'express';
+import emailjs from '@emailjs/browser';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -52,10 +53,28 @@ aboutme(){
     alert('worked')
   }
   client_Details(){
+    const message = `
+Name: ${this.client_name}
+Number: ${this.client_num}
+Case Type: ${this.client_casetype}
+`;
+
+  const templateParams = {
+    to_name: 'Datta',             // Recipient name
+    from_name: this.client_name,  // Who is sending the message
+    message: message              // The actual message
+  };
+
+  emailjs.send('service_cus7xbl', 'test', templateParams, 'K08KFexwI1rYlYaI0')
+    .then((response) => {
+      console.log('Email sent!', response.status, response.text);
+      alert('Client details sent successfully!');
+    })
+    .catch((err) => {
+      console.error('Failed to send email', err);
+      alert('Failed to send email.');
+    });
     this.client_details=[this.client_name,this.client_num,this.client_casetype]
-    console.log(this.client_details)
-    console.log(this.client_name)
-    console.log(this.client_num)
-    console.log(this.client_casetype)
+    
   }
 }
