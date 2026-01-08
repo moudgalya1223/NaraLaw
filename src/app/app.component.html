@@ -3,6 +3,7 @@
     <nav>     
       <span class="heading">{{title}}</span>
      <button (click)="aboutme()"> {{ts['about']}}</button>
+     <button  class="online-consultation" (click)="online_consultation()">online_consultation </button>
      <h1 class="title"> {{title_1}}</h1>3       
     </nav>
     <button class="appointment"  (click)="submit()"> {{book_your_slot}}</button>
@@ -26,6 +27,7 @@
       <h2>{{Book_a_Consultation}}</h2>
       <input type="name" placeholder="Please enter your name" required [(ngModel)]="client_name"/>
       <input type="tel" placeholder="Phone Number" [(ngModel)]="client_num" required/>
+      <input type="email" placeholder="email" [(ngModel)]="client_toname" required/>
       <select required  [(ngModel)]="client_casetype">
         <option value="" disabled selected>{{ts['Select type of case']}}</option>
         <option *ngFor="let caseType of case_types" [value]="caseType"  placeholder="type of case" >{{caseType}}</option>
@@ -49,6 +51,49 @@
 
   </div>
   </section>
+</div>
+<div >
+  <section #onlineconsultation class="consultation-section">
+
+    <h2>Online Consultation</h2>
+    <p>Select a consultation duration</p>
+  
+    <div class="options">
+  
+      <label
+        class="option-box"
+        [class.selected]="selectedPlan?.id === plan.id"
+        *ngFor="let plan of consultationPlans">
+  
+        <input
+          type="radio"
+          name="consultation"
+          [value]="plan"
+          (change)="selectPlan(plan)"
+          hidden
+        />
+  
+        <h3>{{ plan.title }}</h3>
+        <p>{{ plan.duration }}</p>
+        <strong>₹{{ plan.price }}</strong>
+  
+      </label>
+  
+    </div>
+  
+    <!-- Pay Button -->
+    <button
+      class="pay-btn"
+      *ngIf="selectedPlan"
+      (click)="proceedToPayment()">
+  
+      Pay ₹{{ selectedPlan.price }} Securely
+  
+    </button>
+  
+  </section>
+  
+
 </div>
 <!-- <section #booking  class="hero">
   <div class="hero-text">
