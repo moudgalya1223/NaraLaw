@@ -12,13 +12,12 @@ RUN npm run build
 FROM node:20-alpine
 WORKDIR /app
 
-RUN npm install -g http-server
-
-# 👇 Adjust ONLY if your Angular outputPath is different
-COPY --from=build /app/dist/nara-law/browser ./dist
-
-# Cloud Run uses PORT env var (default 8080)
+ENV NODE_ENV=production
 ENV PORT=8080
+
+# Copy full build output (browser + server)
+COPY --from=build /app/dist/nara-law ./dist
+
 EXPOSE 8080
 
-CMD ["sh", "-c", "http-server dist -p $PORT --cors"]
+CMD ["node", "dist/server/server.mjs"]
