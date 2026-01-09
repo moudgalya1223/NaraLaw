@@ -17,7 +17,7 @@ WORKDIR /app
 RUN npm install -g http-server
 
 # 👇 IMPORTANT: replace with your real project name
-COPY --from=build /app/dist/naralaw-web ./dist
+COPY --from=build /app/dist/nara-law/browser ./dist
 
 EXPOSE 8080
 
