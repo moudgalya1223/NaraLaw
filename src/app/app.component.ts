@@ -104,12 +104,14 @@ upipayment(){
 
   const note = `Online Consultation - ${this.selectedPlan.duration}`;
 
-  const upiUrl =
-    `upi://pay?pa=${upiId}` +
-    `&pn=${encodeURIComponent(payeeName)}` +
-    `&am=${amount}` +
-    `&cu=INR` +
-    `&tn=${encodeURIComponent(note)}`;
+  const upiUrl = `upi://pay?pa=${upiId}` +
+  `&pn=${encodeURIComponent(payeeName)}` +
+  `&tr=${transactionRef}` +        // optional but recommended
+  `&tn=${encodeURIComponent(note)}` +
+  `&am=${Number(amount).toFixed(2)}` +
+  `&cu=INR` +
+  `&url=${encodeURIComponent(callbackUrl || '')}`;  // optional
+;
 
   window.location.href = upiUrl;
 }
