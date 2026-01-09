@@ -96,7 +96,7 @@ proceedToPayment() {
   // Call Razorpay / Stripe / Payment API here
 }
 upipayment() {
-  const upiId = 'dattu99rockstar-2@okicici'; // Make sure this is a valid UPI ID
+  const upiId = 'bandhakavimoudgalya@sbi'; // Make sure this is a valid UPI ID
   const payeeName = 'BVRNR';
   const amount = this.selectedPlan.price; // dynamic amount
   const note = `Online Consultation - ${this.selectedPlan.duration}`; // optional note
