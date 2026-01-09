@@ -1,6 +1,5 @@
 # ---------- Build stage ----------
 FROM node:20-alpine AS build
-
 WORKDIR /app
 
 COPY package*.json ./
@@ -11,14 +10,15 @@ RUN npm run build
 
 # ---------- Runtime stage ----------
 FROM node:20-alpine
-
 WORKDIR /app
 
 RUN npm install -g http-server
 
-# 👇 IMPORTANT: replace with your real project name
+# 👇 Adjust ONLY if your Angular outputPath is different
 COPY --from=build /app/dist/nara-law/browser ./dist
 
-EXPOSE 4200
+# Cloud Run uses PORT env var (default 8080)
+ENV PORT=8080
+EXPOSE 8080
 
-CMD ["http-server", "dist", "-p", "4200", "--proxy", "http://localhost:8080?"]
+CMD ["sh", "-c", "http-server dist -p $PORT --cors"]
