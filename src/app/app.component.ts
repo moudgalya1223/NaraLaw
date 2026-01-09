@@ -95,23 +95,24 @@ proceedToPayment() {
   this.upipayment()
   // Call Razorpay / Stripe / Payment API here
 }
-upipayment(){
- 
-  const upiId = '7794837002@ptsbi';
+upipayment() {
+  const upiId = '7794837002@ptsbi'; // Make sure this is a valid UPI ID
   const payeeName = 'BVRNR';
-  const amount = this.selectedPlan.price;
-  console.log(amount)
+  const amount = this.selectedPlan.price; // dynamic amount
+  const note = `Online Consultation - ${this.selectedPlan.duration}`; // optional note
 
-  const note = `Online Consultation - ${this.selectedPlan.duration}`;
+  // Encode note only if you want to include it
+  const encodedNote = encodeURIComponent(note);
 
-  const upiUrl =
-    `upi://pay?pa=${upiId}` +
-    `&pn=${encodeURIComponent(payeeName)}` +
-    `&am=${amount}` +
-    `&cu=INR` +
-    `&tn=${encodeURIComponent(note)}`;
+  // Construct the UPI URL (without tid)
+  const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR&tn=${encodedNote}`;
+
+  console.log('UPI URL:', upiUrl);
+
+  // Redirect to UPI app
   window.location.href = upiUrl;
 }
+
 
   submit(){
     //const sectionEl = this.booking.nativeElement;
