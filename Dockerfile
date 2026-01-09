@@ -19,7 +19,7 @@ RUN npm install -g http-server
 
 # Copy Angular build output
 # 👇 Replace <project-name>
-COPY --from=build /app/dist/NARALAW ./dist
+COPY --from=build /app/dist/nara-law ./dist
 
 # Cloud Run port
 EXPOSE 8080
