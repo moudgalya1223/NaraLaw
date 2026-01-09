@@ -19,6 +19,6 @@ RUN npm install -g http-server
 # 👇 IMPORTANT: replace with your real project name
 COPY --from=build /app/dist/nara-law/browser ./dist
 
-EXPOSE 8080
+EXPOSE 4200
 
-CMD ["http-server", "dist", "-p", "8080", "--proxy", "http://localhost:8080?"]
+CMD ["http-server", "dist", "-p", "4200", "--proxy", "http://localhost:8080?"]
