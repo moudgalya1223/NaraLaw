@@ -105,7 +105,7 @@ upipayment() {
   const encodedNote = encodeURIComponent(note);
 
   // Construct the UPI URL (without tid)
-  const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR&tn=${encodedNote}`;
+  const upiUrl =  `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR`;
 
   console.log('UPI URL:', upiUrl);
 
