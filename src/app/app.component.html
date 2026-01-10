@@ -10,7 +10,7 @@
     <p class="paragraph"> {{pargrah}}</p>
   </div>
   <div class="center-heading">
-  <span>Tanuku</span>  
+  <span><a (click)="map()">Tanuku</a></span>  
   <span>WestGodavari</span> 
   <span>India</span>
 </div>
@@ -25,14 +25,59 @@
     </div>
     <div class="booking-card">
       <h2>{{Book_a_Consultation}}</h2>
-      <input type="name" placeholder="Please enter your name" required [(ngModel)]="client_name"/>
-      <input type="tel" placeholder="Phone Number" [(ngModel)]="client_num" required/>
-      <input type="email" placeholder="email" [(ngModel)]="client_toname" required/>
-      <select required  [(ngModel)]="client_casetype">
-        <option value="" disabled selected>{{ts['Select type of case']}}</option>
-        <option *ngFor="let caseType of case_types" [value]="caseType"  placeholder="type of case" >{{caseType}}</option>
-      </select>
-      <button type="submit" (click)="client_Details()">{{book_your_slot}}</button>
+      <form #clientForm="ngForm" (ngSubmit)="client_Details(clientForm)" novalidate>
+
+        <input type="text" 
+               name="client_name" 
+               placeholder="Please enter your name" 
+               required 
+               [(ngModel)]="client_name"
+               #clientName="ngModel" />
+        <div *ngIf="clientName.touched && clientName.invalid" class="error">
+          Name is required.
+        </div>
+      
+        <input type="tel" 
+               name="client_num" 
+               placeholder="Phone Number" 
+               required 
+               pattern="^[0-9]{10}$"
+               [(ngModel)]="client_num"
+               #clientNum="ngModel" />
+        <div *ngIf="clientNum.touched && clientNum.invalid" class="error">
+           Phone number might be  required or invalid.
+        </div>
+      
+        <input type="email" 
+               name="client_email" 
+               placeholder="Email" 
+               required 
+               email
+               [(ngModel)]="client_toname"
+               #clientEmail="ngModel" />
+        <div *ngIf="clientEmail.touched && clientEmail.invalid" class="error">
+          <div *ngIf="clientEmail.errors?.['required']">Email is required.</div>
+          <div *ngIf="clientEmail.errors?.['email']">Enter a valid email.</div>
+        </div>
+      
+        <select name="client_casetype" 
+                required  
+                [(ngModel)]="client_casetype"
+                #clientCase="ngModel">
+          <option value="" disabled>{{ts['Select type of case']}}</option>
+          <option *ngFor="let caseType of case_types" [value]="caseType">{{caseType}}</option>
+        </select>
+        <div *ngIf="clientCase.touched && clientCase.invalid" class="error">
+          Case type is required.
+        </div>
+      
+        <button type="submit" [disabled]="clientForm.invalid">{{book_your_slot}}</button>
+      
+        <span *ngIf="msg"> {{ts['thanks']}}</span>
+      
+      </form>
+      
+      
       <small>{{ts['payment']}}</small>
     </div>
   </section>
@@ -128,3 +173,4 @@
   </div>
 </section> -->
 
+<p>&copy; {{ currentYear }} Moudgalya. All rights reserved.</p>

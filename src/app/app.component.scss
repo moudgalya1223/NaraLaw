@@ -275,3 +275,12 @@
 .pay-btn:hover {
   background: #145aa3;
 }
+input.invalid, select.invalid {
+  border: 1.5px solid red;
+}
+
+.error {
+  color: red;
+  font-size: 0.85em;
+  margin-bottom: 5px;
+}
