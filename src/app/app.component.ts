@@ -66,7 +66,7 @@ export class AppComponent  {
     {
       id: 1,
       title: 'Quick Consultation',
-      duration: '10 Minutes',
+      duration: '20 Minutes',
       price: 500,
       isFree: false
     },
