@@ -58,7 +58,7 @@ export class AppComponent  {
   consultationPlans = [
     {
       id: 0,
-      title: 'First Consultation',
+      title: 'First Free  Consultation',
       duration: '10 Minutes',
       price: 0,
       isFree: true
