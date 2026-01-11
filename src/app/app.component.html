@@ -3,13 +3,14 @@
     <nav>     
       <span class="heading">{{title}}</span>
      <button (click)="aboutme()"> {{ts['about']}}</button>
+     <button  class="online-consultation" (click)="online_consultation()">online_consultation </button>
      <h1 class="title"> {{title_1}}</h1>3       
     </nav>
     <button class="appointment"  (click)="submit()"> {{book_your_slot}}</button>
     <p class="paragraph"> {{pargrah}}</p>
   </div>
   <div class="center-heading">
-  <span>Tanuku</span>  
+  <span><a (click)="map()">Tanuku</a></span>  
   <span>WestGodavari</span> 
   <span>India</span>
 </div>
@@ -24,13 +25,59 @@
     </div>
     <div class="booking-card">
       <h2>{{Book_a_Consultation}}</h2>
-      <input type="name" placeholder="Please enter your name" required [(ngModel)]="client_name"/>
-      <input type="tel" placeholder="Phone Number" [(ngModel)]="client_num" required/>
-      <select required  [(ngModel)]="client_casetype">
-        <option value="" disabled selected>{{ts['Select type of case']}}</option>
-        <option *ngFor="let caseType of case_types" [value]="caseType"  placeholder="type of case" >{{caseType}}</option>
-      </select>
-      <button type="submit" (click)="client_Details()">{{book_your_slot}}</button>
+      <form #clientForm="ngForm" (ngSubmit)="client_Details(clientForm)" novalidate>
+
+        <input type="text" 
+               name="client_name" 
+               placeholder="Please enter your name" 
+               required 
+               [(ngModel)]="client_name"
+               #clientName="ngModel" />
+        <div *ngIf="clientName.touched && clientName.invalid" class="error">
+          Name is required.
+        </div>
+      
+        <input type="tel" 
+               name="client_num" 
+               placeholder="Phone Number" 
+               required 
+               pattern="^[0-9]{10}$"
+               [(ngModel)]="client_num"
+               #clientNum="ngModel" />
+        <div *ngIf="clientNum.touched && clientNum.invalid" class="error">
+           Phone number might be  required or invalid.
+        </div>
+      
+        <input type="email" 
+               name="client_email" 
+               placeholder="Email" 
+               required 
+               email
+               [(ngModel)]="client_toname"
+               #clientEmail="ngModel" />
+        <div *ngIf="clientEmail.touched && clientEmail.invalid" class="error">
+          <div *ngIf="clientEmail.errors?.['required']">Email is required.</div>
+          <div *ngIf="clientEmail.errors?.['email']">Enter a valid email.</div>
+        </div>
+      
+        <select name="client_casetype" 
+                required  
+                [(ngModel)]="client_casetype"
+                #clientCase="ngModel">
+          <option value="" disabled>{{ts['Select type of case']}}</option>
+          <option *ngFor="let caseType of case_types" [value]="caseType">{{caseType}}</option>
+        </select>
+        <div *ngIf="clientCase.touched && clientCase.invalid" class="error">
+          Case type is required.
+        </div>
+      
+        <button type="submit" [disabled]="clientForm.invalid">{{book_your_slot}}</button>
+      
+        <span *ngIf="msg"> {{ts['thanks']}}</span>
+      
+      </form>
+      
+      
       <small>{{ts['payment']}}</small>
     </div>
   </section>
@@ -49,6 +96,49 @@
 
   </div>
   </section>
+</div>
+<div >
+  <section #onlineconsultation class="consultation-section">
+
+    <h2>Online Consultation</h2>
+    <p>Select a consultation duration</p>
+  
+    <div class="options">
+  
+      <label
+        class="option-box"
+        [class.selected]="selectedPlan?.id === plan.id"
+        *ngFor="let plan of consultationPlans">
+  
+        <input
+          type="radio"
+          name="consultation"
+          [value]="plan"
+          (change)="selectPlan(plan)"
+          hidden
+        />
+  
+        <h3>{{ plan.title }}</h3>
+        <p>{{ plan.duration }}</p>
+        <strong>₹{{ plan.price }}</strong>
+  
+      </label>
+  
+    </div>
+  
+    <!-- Pay Button -->
+    <button
+      class="pay-btn"
+      *ngIf="selectedPlan"
+      (click)="proceedToPayment()">
+  
+      Pay ₹{{ selectedPlan.price }} Securely
+  
+    </button>
+  
+  </section>
+  
+
 </div>
 <!-- <section #booking  class="hero">
   <div class="hero-text">
@@ -83,3 +173,4 @@
   </div>
 </section> -->
 
+<p>&copy; {{ currentYear }} Moudgalya. All rights reserved.</p>

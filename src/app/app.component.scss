@@ -179,6 +179,26 @@
   margin-top: 0;
   margin-bottom: 25px;
 }
+.section-1 .toolbar .online-consultation {
+  position: absolute;
+  top: 83%; /* below the first button */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 35px;
+  background: transparent;
+  color: #ecd83f;
+  border: 1px solid #ecd83f;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  z-index: 6;
+}
+
+.section-1 .toolbar .online-consultation:hover {
+  background-color: #ecd83f;
+  color: #000;
+}
 
 .about-text {
   font-family: 'Georgia', serif;
@@ -205,4 +225,62 @@
     max-width: 100%;
     margin-bottom: 40px;
   }
+}
+.consultation-section {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px;
+}
+
+.options {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.option-box {
+  border: 2px solid #ddd;
+  padding: 20px;
+  width: 220px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  background: #fff;
+}
+
+.option-box:hover {
+  border-color: #1976d2;
+}
+
+.option-box.selected {
+  border-color: #1976d2;
+  background: #f0f6ff;
+}
+
+.option-box h3 {
+  margin-bottom: 8px;
+}
+
+.pay-btn {
+  margin-top: 30px;
+  padding: 14px 30px;
+  font-size: 16px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.pay-btn:hover {
+  background: #145aa3;
+}
+input.invalid, select.invalid {
+  border: 1.5px solid red;
+}
+
+.error {
+  color: red;
+  font-size: 0.85em;
+  margin-bottom: 5px;
 }
